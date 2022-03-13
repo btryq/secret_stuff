@@ -1,0 +1,71 @@
+class update_rslidar_msgs_rslidarScan_d41d8cd98f00b204e9800998ecf8427e(MessageUpdateRule):
+	old_type = "rslidar_msgs/rslidarScan"
+	old_full_text = """
+
+"""
+
+	new_type = "rslidar_msgs/rslidarScan"
+	new_full_text = """
+# LIDAR scan packets.
+
+Header           header         # standard ROS message header
+rslidarPacket[] packets        # vector of raw packets
+
+================================================================================
+MSG: std_msgs/Header
+# Standard metadata for higher-level stamped data types.
+# This is generally used to communicate timestamped data 
+# in a particular coordinate frame.
+# 
+# sequence ID: consecutively increasing ID 
+uint32 seq
+#Two-integer timestamp that is expressed as:
+# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')
+# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')
+# time-handling sugar is provided by the client library
+time stamp
+#Frame this data is associated with
+string frame_id
+
+================================================================================
+MSG: rslidar_msgs/rslidarPacket
+# Raw LIDAR packet.
+
+time stamp              # packet timestamp
+uint8[1248] data        # packet contents
+"""
+
+	order = 0
+	migrated_types = []
+
+	valid = True
+
+	def update(self, old_msg, new_msg):
+		#No matching field name in old message
+		new_msg.header = self.get_new_class('std_msgs/Header')()
+		#No matching field name in old message
+		new_msg.packets = []
+class update_rslidar_msgs_rslidarPacket_d41d8cd98f00b204e9800998ecf8427e(MessageUpdateRule):
+	old_type = "rslidar_msgs/rslidarPacket"
+	old_full_text = """
+
+"""
+
+	new_type = "rslidar_msgs/rslidarPacket"
+	new_full_text = """
+# Raw LIDAR packet.
+
+time stamp              # packet timestamp
+uint8[1248] data        # packet contents
+"""
+
+	order = 0
+	migrated_types = []
+
+	valid = True
+
+	def update(self, old_msg, new_msg):
+		#No matching field name in old message
+		new_msg.stamp = self.get_new_class('time')()
+		#No matching field name in old message
+		new_msg.data = chr(0)*1248
